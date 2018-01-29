@@ -10,7 +10,7 @@ class App extends React.Component {
             seriesEpisodesList: []
         };
     }
-
+jbjbjbj
     componentDidMount() {
 
         fetch('seriesList.json',{})
