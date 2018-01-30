@@ -9,6 +9,15 @@ class App extends React.Component {
             seriesList: [],
             seriesEpisodesList: []
         };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    handleChange(event) {
+        this.setState({value: event.target.value.toLowerCase()});
     }
 
     componentDidMount() {
@@ -41,17 +50,37 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <input type="text" placeholder="Recherche une serie"/>
+                <input type="text" placeholder="Recherche une serie" value={this.state.value}
+                       onChange={this.handleChange}/>
                 <ul>
-                    {this.state.seriesList.length ?
-                        this.state.seriesList.map(item => <li key={item.id}>{item.seriesName}</li>)
-                        : <li>Loading...</li>
+                    {this.state.value !== "" ?
+
+                        this.state.seriesList.filter(
+                            a => a.seriesName.indexOf(this.state.value) > -1).map(item => <li
+                            key={item.id}>{item.seriesName}
+
+                            <ul>
+                                {this.state.seriesEpisodesList.filter(
+                                    b => b.serie_id == item.id).map(episode => episode.episodes_list.filter(
+                                    c => c.episodeName).map(name => <li>{name.episodeName}</li>)
+                                )
+
+                                }
+                            </ul>
+                        </li>)
+
+
+                        : <h1>Rien n'est Marqué</h1>
+
                     }
+
                 </ul>
 
             </div>
         )
     }
-};
+}
+
+
 
         export default App;
