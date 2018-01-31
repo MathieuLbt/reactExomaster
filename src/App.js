@@ -21,7 +21,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-
+// on récuperer les listes des series a partir du fichier JSON
         fetch('seriesList.json', {})
             .then(response => response.json())
             .then(seriesListDepuisFichier => {
@@ -34,7 +34,7 @@ class App extends React.Component {
             .then(function () {
                 /* alert("j'ai fait ce que j'ai pu");*/
             });
-
+        // on récuperer les listes des episodes a partir du fichier JSON
         fetch('seriesEpisodesList.json', {})
             .then(response => response.json())
             .then(seriesListDepuisFichier => {
@@ -51,6 +51,7 @@ class App extends React.Component {
         return (
             <div>
                 <h1>Recherche ta serie</h1>
+                {/*le input pour la recherche des series */}
                 <input id="inputSearch" type="text" placeholder="Recherche une serie" value={this.state.value}
                        onChange={this.handleChange}/>
                 <ul>
@@ -70,7 +71,7 @@ class App extends React.Component {
                             </ul>
                         </li>)
 
-
+                        //ce qui apparait quand le input n'est pas rempli
                         : <h2>Rien n'est Marqué</h2>
 
                     }
