@@ -56,14 +56,16 @@ class App extends React.Component {
                        onChange={this.handleChange}/>
                 <ul>
                     {this.state.value !== "" ?
-
+                            //Recuperation des id des series
                         this.state.seriesList.filter(
                            ahah => ahah.seriesName.indexOf(this.state.value) > -1).map(item => <li
                             key={item.id}>{item.seriesName}
 
                             <ul>
                                 {this.state.seriesEpisodesList.filter(
+                                    //Recuperation des id des episodes
                                     b => b.serie_id == item.id).map(episode => episode.episodes_list.filter(
+
                                     cc => cc.episodeName).map(name => <li>{name.episodeName}</li>)
                                 )
 
